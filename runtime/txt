@@ -1,0 +1,155 @@
+walk [7f80165c5ee8]
+.   NAME-main.t u(1) a(1) g(1) l(12) x(0+0) class(PAUTO) f(1) ld(1) tc(1) used(1) PTR64-*main.T
+walk [7f80165d3528]
+.   ADDR u(2) l(12) tc(1) PTR64-*main.T
+.   .   NAME-main.autotmp_0002 u(1) a(1) l(12) x(0+0) class(PAUTO) esc(N) tc(1) used(1) main.T
+walk [7f80165d2c90]
+.   NAME-main.autotmp_0001 u(1) a(1) l(12) x(0+0) class(PAUTO) esc(N) tc(1) used(1) PTR64-*main.T
+walk [7f80165d3948]
+.   IND u(2) l(12) tc(1) main.T
+.   .   NAME-main.autotmp_0001 u(1) a(1) l(12) x(0+0) class(PAUTO) esc(N) tc(1) used(1) PTR64-*main.T
+walk [7f80165d3ad8]
+.   AS u(2) l(12) tc(1)
+.   .   IND u(2) l(12) tc(1) main.T
+.   .   .   NAME-main.autotmp_0001 u(1) a(1) l(12) x(0+0) class(PAUTO) esc(N) tc(1) used(1) PTR64-*main.T
+walk [7f80165d2c90]
+.   NAME-main.autotmp_0001 u(1) a(1) l(12) x(0+0) class(PAUTO) esc(N) tc(1) used(1) PTR64-*main.T
+walk [7f80165d3c80]
+.   AS u(2) l(12) tc(1)
+.   .   NAME-main.t u(1) a(1) g(1) l(12) x(0+0) class(PAUTO) f(1) ld(1) tc(1) used(1) PTR64-*main.T
+.   .   NAME-main.autotmp_0001 u(1) a(1) l(12) x(0+0) class(PAUTO) esc(N) tc(1) used(1) PTR64-*main.T
+walk [7f80165d2540]
+.   NAME-main.autotmp_0000 u(1) a(1) l(13) x(0+0) class(PAUTO) esc(N) tc(1) used(1) PTR64-*main.T
+walk [7f80165c5ee8]
+.   NAME-main.t u(1) a(1) g(1) l(12) x(0+0) class(PAUTO) f(1) ld(1) tc(1) used(1) PTR64-*main.T
+walk [7f80165d3e10]
+.   AS u(2) l(13) tc(1)
+.   .   NAME-main.autotmp_0000 u(1) a(1) l(13) x(0+0) class(PAUTO) esc(N) tc(1) used(1) PTR64-*main.T
+.   .   NAME-main.t u(1) a(1) g(1) l(12) x(0+0) class(PAUTO) f(1) ld(1) tc(1) used(1) PTR64-*main.T
+walk [7f80165c6800]
+.   NAME-main.i u(1) a(1) g(2) l(13) x(0+0) class(PAUTO) f(1) ld(1) tc(1) used(1) main.I
+walk [7f80165d2540]
+.   NAME-main.autotmp_0000 u(1) a(1) l(13) x(0+0) class(PAUTO) esc(N) tc(1) used(1) PTR64-*main.T
+walk [7f80165d6248]
+.   NAME-runtime.typ2Itab u(1) a(1) l(2) x(0+0) class(PFUNC) tc(1) used(1) FUNC-funcSTRUCT-(FIELD-
+.   .   NAME-runtime.typ·2 u(1) a(1) l(2) x(0+0) class(PPARAM) f(1) PTR64-*byte PTR64-*byte, FIELD-
+.   .   NAME-runtime.typ2·3 u(1) a(1) l(2) x(8+0) class(PPARAM) f(1) PTR64-*byte PTR64-*byte, FIELD-
+.   .   NAME-runtime.cache·4 u(1) a(1) l(2) x(16+0) class(PPARAM) f(1) PTR64-*PTR64-*byte PTR64-*PTR64-*byte) PTR64-*byte
+walk [7f80165cdd98]
+.   NAME-type.*"".T u(1) a(1) l(10) x(0+0) class(PEXTERN) tc(1) uint8
+walk [7f80165d4e30]
+.   ADDR u(2) a(1) l(13) tc(1) PTR64-*uint8
+.   .   NAME-type.*"".T u(1) a(1) l(10) x(0+0) class(PEXTERN) tc(1) uint8
+walk [7f80165d5108]
+.   NAME-type."".I u(1) a(1) l(13) x(0+0) class(PEXTERN) tc(1) uint8
+walk [7f80165d5440]
+.   ADDR u(2) a(1) l(13) tc(1) PTR64-*uint8
+.   .   NAME-type."".I u(1) a(1) l(13) x(0+0) class(PEXTERN) tc(1) uint8
+walk [7f80165d5720]
+.   NAME-go.itab.*"".T."".I u(1) a(1) l(13) x(0+0) class(PEXTERN) tc(1) used(1) PTR64-*uint8
+walk [7f80165d5a58]
+.   ADDR u(2) a(1) l(13) tc(1) PTR64-*PTR64-*uint8
+.   .   NAME-go.itab.*"".T."".I u(1) a(1) l(13) x(0+0) class(PEXTERN) tc(1) used(1) PTR64-*uint8
+walk [7f80165d6e68]
+.   CALLFUNC u(100) l(13) tc(1) PTR64-*byte
+.   .   NAME-runtime.typ2Itab u(1) a(1) l(2) x(0+0) class(PFUNC) tc(1) used(1) FUNC-funcSTRUCT-(FIELD-
+.   .   .   NAME-runtime.typ·2 u(1) a(1) l(2) x(0+0) class(PPARAM) f(1) PTR64-*byte PTR64-*byte, FIELD-
+.   .   .   NAME-runtime.typ2·3 u(1) a(1) l(2) x(8+0) class(PPARAM) f(1) PTR64-*byte PTR64-*byte, FIELD-
+.   .   .   NAME-runtime.cache·4 u(1) a(1) l(2) x(16+0) class(PPARAM) f(1) PTR64-*PTR64-*byte PTR64-*PTR64-*byte) PTR64-*byte
+.   CALLFUNC-list
+.   .   AS u(2) l(13) tc(1)
+.   .   .   INDREG-SP a(1) l(13) x(0+0) tc(1) runtime.typ·2 G0 PTR64-*byte
+.   .   .   ADDR u(2) a(1) l(13) tc(1) PTR64-*uint8
+.   .   .   .   NAME-type.*"".T u(1) a(1) l(10) x(0+0) class(PEXTERN) tc(1) uint8
+
+.   .   AS u(2) l(13) tc(1)
+.   .   .   INDREG-SP a(1) l(13) x(8+0) tc(1) runtime.typ2·3 G0 PTR64-*byte
+.   .   .   ADDR u(2) a(1) l(13) tc(1) PTR64-*uint8
+.   .   .   .   NAME-type."".I u(1) a(1) l(13) x(0+0) class(PEXTERN) tc(1) uint8
+
+.   .   AS u(2) l(13) tc(1)
+.   .   .   INDREG-SP a(1) l(13) x(16+0) tc(1) runtime.cache·4 G0 PTR64-*PTR64-*byte
+.   .   .   ADDR u(2) a(1) l(13) tc(1) PTR64-*PTR64-*uint8
+.   .   .   .   NAME-go.itab.*"".T."".I u(1) a(1) l(13) x(0+0) class(PEXTERN) tc(1) used(1) PTR64-*uint8
+walk [7f80165d8440]
+.   EFACE u(2) l(13) tc(1) main.I
+.   .   NAME-main.autotmp_0003 u(1) a(1) l(13) x(0+0) class(PAUTO) esc(N) tc(1) used(1) PTR64-*uint8
+.   .   NAME-main.autotmp_0000 u(1) a(1) l(13) x(0+0) class(PAUTO) esc(N) tc(1) used(1) PTR64-*main.T
+walk [7f80165d85d0]
+.   AS u(2) l(13) tc(1)
+.   .   NAME-main.i u(1) a(1) g(2) l(13) x(0+0) class(PAUTO) f(1) ld(1) tc(1) used(1) main.I
+.   .   EFACE u(2) l(13) tc(1) main.I
+.   .   .   NAME-main.autotmp_0003 u(1) a(1) l(13) x(0+0) class(PAUTO) esc(N) tc(1) used(1) PTR64-*uint8
+.   .   .   NAME-main.autotmp_0000 u(1) a(1) l(13) x(0+0) class(PAUTO) esc(N) tc(1) used(1) PTR64-*main.T
+walk [7f80165c6800]
+.   NAME-main.i u(1) a(1) g(2) l(13) x(0+0) class(PAUTO) f(1) ld(1) tc(1) used(1) main.I
+walk [7f80165d8760]
+.   NAME-runtime.printiface u(1) a(1) l(2) x(0+0) class(PFUNC) tc(1) used(1) FUNC-funcSTRUCT-(FIELD-main.I)
+walk [7f80165c6800]
+.   NAME-main.i u(1) a(1) g(2) l(13) x(0+0) class(PAUTO) f(1) ld(1) tc(1) used(1) main.I
+walk [7f80165d8dd0]
+.   CALLFUNC u(100) l(14) tc(1)
+.   .   NAME-runtime.printiface u(1) a(1) l(2) x(0+0) class(PFUNC) tc(1) used(1) FUNC-funcSTRUCT-(FIELD-main.I)
+.   CALLFUNC-list
+.   .   AS u(1) l(14) tc(1)
+.   .   .   INDREG-SP a(1) l(14) x(0+0) tc(1) main.I
+.   .   .   NAME-main.i u(1) a(1) g(2) l(13) x(0+0) class(PAUTO) f(1) ld(1) tc(1) used(1) main.I
+walk [7f80165d93b0]
+.   EMPTY u(2) l(14) tc(1)
+walk [7f80165d93b0]
+.   EMPTY-init
+.   .   CALLFUNC u(100) l(14) tc(1)
+.   .   .   NAME-runtime.printiface u(1) a(1) l(2) x(0+0) class(PFUNC) tc(1) used(1) FUNC-funcSTRUCT-(FIELD-main.I)
+.   .   CALLFUNC-list
+.   .   .   AS u(1) l(14) tc(1)
+.   .   .   .   INDREG-SP a(1) l(14) x(0+0) tc(1) main.I
+.   .   .   .   NAME-main.i u(1) a(1) g(2) l(13) x(0+0) class(PAUTO) f(1) ld(1) tc(1) used(1) main.I
+.   EMPTY u(100) l(14) tc(1)
+walk [7f80165df538]
+.   NAME-main.initdone· u(1) a(1) l(15) x(0+0) class(PEXTERN) tc(1) used(1) uint8
+walk [7f80165e17a0]
+.   LITERAL-0 u(1) a(1) l(15) tc(1) uint8
+walk [7f80165e0060]
+.   NE u(2) l(15) tc(1) bool
+.   .   NAME-main.initdone· u(1) a(1) l(15) x(0+0) class(PEXTERN) tc(1) used(1) uint8
+.   .   LITERAL-0 u(1) a(1) l(15) tc(1) uint8
+walk [7f80165df538]
+.   NAME-main.initdone· u(1) a(1) l(15) x(0+0) class(PEXTERN) tc(1) used(1) uint8
+walk [7f80165e1930]
+.   LITERAL-2 u(1) a(1) l(15) tc(1) uint8
+walk [7f80165e05b0]
+.   EQ u(2) l(15) tc(1) bool
+.   .   NAME-main.initdone· u(1) a(1) l(15) x(0+0) class(PEXTERN) tc(1) used(1) uint8
+.   .   LITERAL-2 u(1) a(1) l(15) tc(1) uint8
+walk [118bad0]
+.   NAME-runtime.throwinit u(1) a(1) l(2) x(0+0) class(PFUNC) tc(1) used(1) FUNC-funcSTRUCT-()
+walk [7f80165e0900]
+.   CALLFUNC u(100) l(15) tc(1)
+.   .   NAME-runtime.throwinit u(1) a(1) l(2) x(0+0) class(PFUNC) tc(1) used(1) FUNC-funcSTRUCT-()
+walk [7f80165df538]
+.   NAME-main.initdone· u(1) a(1) l(15) x(0+0) class(PEXTERN) tc(1) used(1) uint8
+walk [7f80165e1d38]
+.   LITERAL-1 u(1) a(1) l(15) tc(1) uint8
+walk [7f80165e2360]
+.   AS u(2) l(15) tc(1)
+.   .   NAME-main.initdone· u(1) a(1) l(15) x(0+0) class(PEXTERN) tc(1) used(1) uint8
+.   .   LITERAL-1 u(1) a(1) l(15) tc(1) uint8
+walk [7f80165df538]
+.   NAME-main.initdone· u(1) a(1) l(15) x(0+0) class(PEXTERN) tc(1) used(1) uint8
+walk [7f80165e2058]
+.   LITERAL-2 u(1) a(1) l(15) tc(1) uint8
+walk [7f80165e24f0]
+.   AS u(2) l(15) tc(1)
+.   .   NAME-main.initdone· u(1) a(1) l(15) x(0+0) class(PEXTERN) tc(1) used(1) uint8
+.   .   LITERAL-2 u(1) a(1) l(15) tc(1) uint8
+walk [7f80165ec080]
+.   NAME-main..this u(1) a(1) g(1) l(17) x(0+0) class(PPARAM) f(1) tc(1) used(1) main.I
+walk [7f80165ecb30]
+.   DOTINTER u(2) l(17) x(0+0) tc(1) FUNC-methodSTRUCT-(FIELD-PTR64-*STRUCT-struct {}) funcSTRUCT-()
+.   .   NAME-main..this u(1) a(1) g(1) l(17) x(0+0) class(PPARAM) f(1) tc(1) used(1) main.I
+.   .   NAME-main.DoSomeWork u(1) a(1) l(17) x(0+0)
+walk [7f80165eccf0]
+.   CALLINTER u(100) l(17) tc(1)
+.   .   DOTINTER u(2) l(17) x(0+0) tc(1) FUNC-methodSTRUCT-(FIELD-PTR64-*STRUCT-struct {}) funcSTRUCT-()
+.   .   .   NAME-main..this u(1) a(1) g(1) l(17) x(0+0) class(PPARAM) f(1) tc(1) used(1) main.I
+.   .   .   NAME-main.DoSomeWork u(1) a(1) l(17) x(0+0)

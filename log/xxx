@@ -1,0 +1,626 @@
+panic: runtime error: invalid memory address or nil pointer dereference
+[signal 0xb code=0x1 addr=0x10 pc=0x45371f]
+
+goroutine 9 [running]:
+package/log.(*Logger).Debugln(0x0, 0xc20801afa0, 0x1, 0x1)
+	/home/brant/workfile/myjob/src/package/log/log.go:88 +0x1f
+main.multiLogging(0xc208038080, 0x74)
+	/home/brant/workfile/testfile/go_test/log/log.go:47 +0xf6
+created by main.main
+	/home/brant/workfile/testfile/go_test/log/log.go:38 +0x4a0
+
+goroutine 1 [runnable]:
+main.main()
+	/home/brant/workfile/testfile/go_test/log/log.go:40 +0x4c8
+
+goroutine 5 [runnable]:
+main.multiLogging(0xc208038080, 0x74)
+	/home/brant/workfile/testfile/go_test/log/log.go:45
+created by main.main
+	/home/brant/workfile/testfile/go_test/log/log.go:38 +0x4a0
+
+goroutine 6 [running]:
+	goroutine running on other thread; stack unavailable
+created by main.main
+	/home/brant/workfile/testfile/go_test/log/log.go:38 +0x4a0
+
+goroutine 7 [runnable]:
+main.multiLogging(0xc208038080, 0x74)
+	/home/brant/workfile/testfile/go_test/log/log.go:45
+created by main.main
+	/home/brant/workfile/testfile/go_test/log/log.go:38 +0x4a0
+
+goroutine 8 [runnable]:
+main.multiLogging(0xc208038080, 0x74)
+	/home/brant/workfile/testfile/go_test/log/log.go:45
+created by main.main
+	/home/brant/workfile/testfile/go_test/log/log.go:38 +0x4a0
+
+goroutine 10 [runnable]:
+main.multiLogging(0xc208038080, 0x74)
+	/home/brant/workfile/testfile/go_test/log/log.go:45
+created by main.main
+	/home/brant/workfile/testfile/go_test/log/log.go:38 +0x4a0
+
+goroutine 11 [running]:
+	goroutine running on other thread; stack unavailable
+created by main.main
+	/home/brant/workfile/testfile/go_test/log/log.go:38 +0x4a0
+
+goroutine 12 [runnable]:
+main.multiLogging(0xc208038080, 0x74)
+	/home/brant/workfile/testfile/go_test/log/log.go:45
+created by main.main
+	/home/brant/workfile/testfile/go_test/log/log.go:38 +0x4a0
+
+goroutine 13 [runnable]:
+main.multiLogging(0xc208038080, 0x74)
+	/home/brant/workfile/testfile/go_test/log/log.go:45
+created by main.main
+	/home/brant/workfile/testfile/go_test/log/log.go:38 +0x4a0
+
+goroutine 14 [runnable]:
+main.multiLogging(0xc208038080, 0x74)
+	/home/brant/workfile/testfile/go_test/log/log.go:45
+created by main.main
+	/home/brant/workfile/testfile/go_test/log/log.go:38 +0x4a0
+
+goroutine 15 [runnable]:
+main.multiLogging(0xc208038080, 0x74)
+	/home/brant/workfile/testfile/go_test/log/log.go:45
+created by main.main
+	/home/brant/workfile/testfile/go_test/log/log.go:38 +0x4a0
+
+goroutine 16 [runnable]:
+main.multiLogging(0xc208038080, 0x74)
+	/home/brant/workfile/testfile/go_test/log/log.go:45
+created by main.main
+	/home/brant/workfile/testfile/go_test/log/log.go:38 +0x4a0
+
+goroutine 17 [runnable]:
+main.multiLogging(0xc208038080, 0x74)
+	/home/brant/workfile/testfile/go_test/log/log.go:45
+created by main.main
+	/home/brant/workfile/testfile/go_test/log/log.go:38 +0x4a0
+
+goroutine 18 [runnable]:
+main.multiLogging(0xc208038080, 0x74)
+	/home/brant/workfile/testfile/go_test/log/log.go:45
+created by main.main
+	/home/brant/workfile/testfile/go_test/log/log.go:38 +0x4a0
+
+goroutine 19 [runnable]:
+main.multiLogging(0xc208038080, 0x74)
+	/home/brant/workfile/testfile/go_test/log/log.go:45
+created by main.main
+	/home/brant/workfile/testfile/go_test/log/log.go:38 +0x4a0
+
+goroutine 20 [runnable]:
+main.multiLogging(0xc208038080, 0x74)
+	/home/brant/workfile/testfile/go_test/log/log.go:45
+created by main.main
+	/home/brant/workfile/testfile/go_test/log/log.go:38 +0x4a0
+
+goroutine 21 [runnable]:
+main.multiLogging(0xc208038080, 0x74)
+	/home/brant/workfile/testfile/go_test/log/log.go:45
+created by main.main
+	/home/brant/workfile/testfile/go_test/log/log.go:38 +0x4a0
+
+goroutine 22 [runnable]:
+main.multiLogging(0xc208038080, 0x74)
+	/home/brant/workfile/testfile/go_test/log/log.go:45
+created by main.main
+	/home/brant/workfile/testfile/go_test/log/log.go:38 +0x4a0
+
+goroutine 23 [runnable]:
+main.multiLogging(0xc208038080, 0x74)
+	/home/brant/workfile/testfile/go_test/log/log.go:45
+created by main.main
+	/home/brant/workfile/testfile/go_test/log/log.go:38 +0x4a0
+
+goroutine 24 [runnable]:
+main.multiLogging(0xc208038080, 0x74)
+	/home/brant/workfile/testfile/go_test/log/log.go:45
+created by main.main
+	/home/brant/workfile/testfile/go_test/log/log.go:38 +0x4a0
+
+goroutine 25 [runnable]:
+main.multiLogging(0xc208038080, 0x74)
+	/home/brant/workfile/testfile/go_test/log/log.go:45
+created by main.main
+	/home/brant/workfile/testfile/go_test/log/log.go:38 +0x4a0
+
+goroutine 26 [runnable]:
+main.multiLogging(0xc208038080, 0x74)
+	/home/brant/workfile/testfile/go_test/log/log.go:45
+created by main.main
+	/home/brant/workfile/testfile/go_test/log/log.go:38 +0x4a0
+
+goroutine 27 [runnable]:
+main.multiLogging(0xc208038080, 0x74)
+	/home/brant/workfile/testfile/go_test/log/log.go:45
+created by main.main
+	/home/brant/workfile/testfile/go_test/log/log.go:38 +0x4a0
+
+goroutine 28 [runnable]:
+main.multiLogging(0xc208038080, 0x74)
+	/home/brant/workfile/testfile/go_test/log/log.go:45
+created by main.main
+	/home/brant/workfile/testfile/go_test/log/log.go:38 +0x4a0
+
+goroutine 29 [runnable]:
+main.multiLogging(0xc208038080, 0x74)
+	/home/brant/workfile/testfile/go_test/log/log.go:45
+created by main.main
+	/home/brant/workfile/testfile/go_test/log/log.go:38 +0x4a0
+
+goroutine 30 [runnable]:
+main.multiLogging(0xc208038080, 0x74)
+	/home/brant/workfile/testfile/go_test/log/log.go:45
+created by main.main
+	/home/brant/workfile/testfile/go_test/log/log.go:38 +0x4a0
+
+goroutine 31 [runnable]:
+main.multiLogging(0xc208038080, 0x74)
+	/home/brant/workfile/testfile/go_test/log/log.go:45
+created by main.main
+	/home/brant/workfile/testfile/go_test/log/log.go:38 +0x4a0
+
+goroutine 32 [runnable]:
+main.multiLogging(0xc208038080, 0x74)
+	/home/brant/workfile/testfile/go_test/log/log.go:45
+created by main.main
+	/home/brant/workfile/testfile/go_test/log/log.go:38 +0x4a0
+
+goroutine 33 [runnable]:
+main.multiLogging(0xc208038080, 0x74)
+	/home/brant/workfile/testfile/go_test/log/log.go:45
+created by main.main
+	/home/brant/workfile/testfile/go_test/log/log.go:38 +0x4a0
+
+goroutine 34 [runnable]:
+main.multiLogging(0xc208038080, 0x74)
+	/home/brant/workfile/testfile/go_test/log/log.go:45
+created by main.main
+	/home/brant/workfile/testfile/go_test/log/log.go:38 +0x4a0
+
+goroutine 35 [runnable]:
+main.multiLogging(0xc208038080, 0x74)
+	/home/brant/workfile/testfile/go_test/log/log.go:45
+created by main.main
+	/home/brant/workfile/testfile/go_test/log/log.go:38 +0x4a0
+
+goroutine 36 [runnable]:
+main.multiLogging(0xc208038080, 0x74)
+	/home/brant/workfile/testfile/go_test/log/log.go:45
+created by main.main
+	/home/brant/workfile/testfile/go_test/log/log.go:38 +0x4a0
+
+goroutine 37 [runnable]:
+main.multiLogging(0xc208038080, 0x74)
+	/home/brant/workfile/testfile/go_test/log/log.go:45
+created by main.main
+	/home/brant/workfile/testfile/go_test/log/log.go:38 +0x4a0
+
+goroutine 38 [runnable]:
+main.multiLogging(0xc208038080, 0x74)
+	/home/brant/workfile/testfile/go_test/log/log.go:45
+created by main.main
+	/home/brant/workfile/testfile/go_test/log/log.go:38 +0x4a0
+
+goroutine 39 [runnable]:
+main.multiLogging(0xc208038080, 0x74)
+	/home/brant/workfile/testfile/go_test/log/log.go:45
+created by main.main
+	/home/brant/workfile/testfile/go_test/log/log.go:38 +0x4a0
+
+goroutine 40 [runnable]:
+main.multiLogging(0xc208038080, 0x74)
+	/home/brant/workfile/testfile/go_test/log/log.go:45
+created by main.main
+	/home/brant/workfile/testfile/go_test/log/log.go:38 +0x4a0
+
+goroutine 41 [runnable]:
+main.multiLogging(0xc208038080, 0x74)
+	/home/brant/workfile/testfile/go_test/log/log.go:45
+created by main.main
+	/home/brant/workfile/testfile/go_test/log/log.go:38 +0x4a0
+
+goroutine 42 [runnable]:
+main.multiLogging(0xc208038080, 0x74)
+	/home/brant/workfile/testfile/go_test/log/log.go:45
+created by main.main
+	/home/brant/workfile/testfile/go_test/log/log.go:38 +0x4a0
+
+goroutine 43 [runnable]:
+main.multiLogging(0xc208038080, 0x74)
+	/home/brant/workfile/testfile/go_test/log/log.go:45
+created by main.main
+	/home/brant/workfile/testfile/go_test/log/log.go:38 +0x4a0
+
+goroutine 44 [runnable]:
+main.multiLogging(0xc208038080, 0x74)
+	/home/brant/workfile/testfile/go_test/log/log.go:45
+created by main.main
+	/home/brant/workfile/testfile/go_test/log/log.go:38 +0x4a0
+
+goroutine 45 [runnable]:
+main.multiLogging(0xc208038080, 0x74)
+	/home/brant/workfile/testfile/go_test/log/log.go:45
+created by main.main
+	/home/brant/workfile/testfile/go_test/log/log.go:38 +0x4a0
+
+goroutine 46 [runnable]:
+main.multiLogging(0xc208038080, 0x74)
+	/home/brant/workfile/testfile/go_test/log/log.go:45
+created by main.main
+	/home/brant/workfile/testfile/go_test/log/log.go:38 +0x4a0
+
+goroutine 47 [runnable]:
+main.multiLogging(0xc208038080, 0x74)
+	/home/brant/workfile/testfile/go_test/log/log.go:45
+created by main.main
+	/home/brant/workfile/testfile/go_test/log/log.go:38 +0x4a0
+
+goroutine 48 [runnable]:
+main.multiLogging(0xc208038080, 0x74)
+	/home/brant/workfile/testfile/go_test/log/log.go:45
+created by main.main
+	/home/brant/workfile/testfile/go_test/log/log.go:38 +0x4a0
+
+goroutine 49 [runnable]:
+main.multiLogging(0xc208038080, 0x74)
+	/home/brant/workfile/testfile/go_test/log/log.go:45
+created by main.main
+	/home/brant/workfile/testfile/go_test/log/log.go:38 +0x4a0
+
+goroutine 50 [runnable]:
+main.multiLogging(0xc208038080, 0x74)
+	/home/brant/workfile/testfile/go_test/log/log.go:45
+created by main.main
+	/home/brant/workfile/testfile/go_test/log/log.go:38 +0x4a0
+
+goroutine 51 [runnable]:
+main.multiLogging(0xc208038080, 0x74)
+	/home/brant/workfile/testfile/go_test/log/log.go:45
+created by main.main
+	/home/brant/workfile/testfile/go_test/log/log.go:38 +0x4a0
+
+goroutine 52 [runnable]:
+main.multiLogging(0xc208038080, 0x74)
+	/home/brant/workfile/testfile/go_test/log/log.go:45
+created by main.main
+	/home/brant/workfile/testfile/go_test/log/log.go:38 +0x4a0
+
+goroutine 53 [runnable]:
+main.multiLogging(0xc208038080, 0x74)
+	/home/brant/workfile/testfile/go_test/log/log.go:45
+created by main.main
+	/home/brant/workfile/testfile/go_test/log/log.go:38 +0x4a0
+
+goroutine 54 [runnable]:
+main.multiLogging(0xc208038080, 0x74)
+	/home/brant/workfile/testfile/go_test/log/log.go:45
+created by main.main
+	/home/brant/workfile/testfile/go_test/log/log.go:38 +0x4a0
+
+goroutine 55 [runnable]:
+main.multiLogging(0xc208038080, 0x74)
+	/home/brant/workfile/testfile/go_test/log/log.go:45
+created by main.main
+	/home/brant/workfile/testfile/go_test/log/log.go:38 +0x4a0
+
+goroutine 56 [runnable]:
+main.multiLogging(0xc208038080, 0x74)
+	/home/brant/workfile/testfile/go_test/log/log.go:45
+created by main.main
+	/home/brant/workfile/testfile/go_test/log/log.go:38 +0x4a0
+
+goroutine 57 [runnable]:
+main.multiLogging(0xc208038080, 0x74)
+	/home/brant/workfile/testfile/go_test/log/log.go:45
+created by main.main
+	/home/brant/workfile/testfile/go_test/log/log.go:38 +0x4a0
+
+goroutine 58 [runnable]:
+main.multiLogging(0xc208038080, 0x74)
+	/home/brant/workfile/testfile/go_test/log/log.go:45
+created by main.main
+	/home/brant/workfile/testfile/go_test/log/log.go:38 +0x4a0
+
+goroutine 59 [runnable]:
+main.multiLogging(0xc208038080, 0x74)
+	/home/brant/workfile/testfile/go_test/log/log.go:45
+created by main.main
+	/home/brant/workfile/testfile/go_test/log/log.go:38 +0x4a0
+
+goroutine 60 [runnable]:
+main.multiLogging(0xc208038080, 0x74)
+	/home/brant/workfile/testfile/go_test/log/log.go:45
+created by main.main
+	/home/brant/workfile/testfile/go_test/log/log.go:38 +0x4a0
+
+goroutine 61 [runnable]:
+main.multiLogging(0xc208038080, 0x74)
+	/home/brant/workfile/testfile/go_test/log/log.go:45
+created by main.main
+	/home/brant/workfile/testfile/go_test/log/log.go:38 +0x4a0
+
+goroutine 62 [runnable]:
+main.multiLogging(0xc208038080, 0x74)
+	/home/brant/workfile/testfile/go_test/log/log.go:45
+created by main.main
+	/home/brant/workfile/testfile/go_test/log/log.go:38 +0x4a0
+
+goroutine 63 [runnable]:
+main.multiLogging(0xc208038080, 0x74)
+	/home/brant/workfile/testfile/go_test/log/log.go:45
+created by main.main
+	/home/brant/workfile/testfile/go_test/log/log.go:38 +0x4a0
+
+goroutine 64 [runnable]:
+main.multiLogging(0xc208038080, 0x74)
+	/home/brant/workfile/testfile/go_test/log/log.go:45
+created by main.main
+	/home/brant/workfile/testfile/go_test/log/log.go:38 +0x4a0
+
+goroutine 65 [runnable]:
+main.multiLogging(0xc208038080, 0x74)
+	/home/brant/workfile/testfile/go_test/log/log.go:45
+created by main.main
+	/home/brant/workfile/testfile/go_test/log/log.go:38 +0x4a0
+
+goroutine 66 [runnable]:
+main.multiLogging(0xc208038080, 0x74)
+	/home/brant/workfile/testfile/go_test/log/log.go:45
+created by main.main
+	/home/brant/workfile/testfile/go_test/log/log.go:38 +0x4a0
+
+goroutine 67 [runnable]:
+main.multiLogging(0xc208038080, 0x74)
+	/home/brant/workfile/testfile/go_test/log/log.go:45
+created by main.main
+	/home/brant/workfile/testfile/go_test/log/log.go:38 +0x4a0
+
+goroutine 68 [runnable]:
+main.multiLogging(0xc208038080, 0x74)
+	/home/brant/workfile/testfile/go_test/log/log.go:45
+created by main.main
+	/home/brant/workfile/testfile/go_test/log/log.go:38 +0x4a0
+
+goroutine 69 [runnable]:
+main.multiLogging(0xc208038080, 0x74)
+	/home/brant/workfile/testfile/go_test/log/log.go:45
+created by main.main
+	/home/brant/workfile/testfile/go_test/log/log.go:38 +0x4a0
+
+goroutine 70 [runnable]:
+main.multiLogging(0xc208038080, 0x74)
+	/home/brant/workfile/testfile/go_test/log/log.go:45
+created by main.main
+	/home/brant/workfile/testfile/go_test/log/log.go:38 +0x4a0
+
+goroutine 71 [runnable]:
+main.multiLogging(0xc208038080, 0x74)
+	/home/brant/workfile/testfile/go_test/log/log.go:45
+created by main.main
+	/home/brant/workfile/testfile/go_test/log/log.go:38 +0x4a0
+
+goroutine 72 [runnable]:
+main.multiLogging(0xc208038080, 0x74)
+	/home/brant/workfile/testfile/go_test/log/log.go:45
+created by main.main
+	/home/brant/workfile/testfile/go_test/log/log.go:38 +0x4a0
+
+goroutine 73 [runnable]:
+main.multiLogging(0xc208038080, 0x74)
+	/home/brant/workfile/testfile/go_test/log/log.go:45
+created by main.main
+	/home/brant/workfile/testfile/go_test/log/log.go:38 +0x4a0
+
+goroutine 74 [runnable]:
+main.multiLogging(0xc208038080, 0x74)
+	/home/brant/workfile/testfile/go_test/log/log.go:45
+created by main.main
+	/home/brant/workfile/testfile/go_test/log/log.go:38 +0x4a0
+
+goroutine 75 [runnable]:
+main.multiLogging(0xc208038080, 0x74)
+	/home/brant/workfile/testfile/go_test/log/log.go:45
+created by main.main
+	/home/brant/workfile/testfile/go_test/log/log.go:38 +0x4a0
+
+goroutine 76 [runnable]:
+main.multiLogging(0xc208038080, 0x74)
+	/home/brant/workfile/testfile/go_test/log/log.go:45
+created by main.main
+	/home/brant/workfile/testfile/go_test/log/log.go:38 +0x4a0
+
+goroutine 77 [runnable]:
+main.multiLogging(0xc208038080, 0x74)
+	/home/brant/workfile/testfile/go_test/log/log.go:45
+created by main.main
+	/home/brant/workfile/testfile/go_test/log/log.go:38 +0x4a0
+
+goroutine 78 [runnable]:
+main.multiLogging(0xc208038080, 0x74)
+	/home/brant/workfile/testfile/go_test/log/log.go:45
+created by main.main
+	/home/brant/workfile/testfile/go_test/log/log.go:38 +0x4a0
+
+goroutine 79 [runnable]:
+main.multiLogging(0xc208038080, 0x74)
+	/home/brant/workfile/testfile/go_test/log/log.go:45
+created by main.main
+	/home/brant/workfile/testfile/go_test/log/log.go:38 +0x4a0
+
+goroutine 80 [runnable]:
+main.multiLogging(0xc208038080, 0x74)
+	/home/brant/workfile/testfile/go_test/log/log.go:45
+created by main.main
+	/home/brant/workfile/testfile/go_test/log/log.go:38 +0x4a0
+
+goroutine 81 [runnable]:
+main.multiLogging(0xc208038080, 0x74)
+	/home/brant/workfile/testfile/go_test/log/log.go:45
+created by main.main
+	/home/brant/workfile/testfile/go_test/log/log.go:38 +0x4a0
+
+goroutine 82 [runnable]:
+main.multiLogging(0xc208038080, 0x74)
+	/home/brant/workfile/testfile/go_test/log/log.go:45
+created by main.main
+	/home/brant/workfile/testfile/go_test/log/log.go:38 +0x4a0
+
+goroutine 83 [runnable]:
+main.multiLogging(0xc208038080, 0x74)
+	/home/brant/workfile/testfile/go_test/log/log.go:45
+created by main.main
+	/home/brant/workfile/testfile/go_test/log/log.go:38 +0x4a0
+
+goroutine 84 [runnable]:
+main.multiLogging(0xc208038080, 0x74)
+	/home/brant/workfile/testfile/go_test/log/log.go:45
+created by main.main
+	/home/brant/workfile/testfile/go_test/log/log.go:38 +0x4a0
+
+goroutine 85 [runnable]:
+main.multiLogging(0xc208038080, 0x74)
+	/home/brant/workfile/testfile/go_test/log/log.go:45
+created by main.main
+	/home/brant/workfile/testfile/go_test/log/log.go:38 +0x4a0
+
+goroutine 86 [runnable]:
+main.multiLogging(0xc208038080, 0x74)
+	/home/brant/workfile/testfile/go_test/log/log.go:45
+created by main.main
+	/home/brant/workfile/testfile/go_test/log/log.go:38 +0x4a0
+
+goroutine 87 [runnable]:
+main.multiLogging(0xc208038080, 0x74)
+	/home/brant/workfile/testfile/go_test/log/log.go:45
+created by main.main
+	/home/brant/workfile/testfile/go_test/log/log.go:38 +0x4a0
+
+goroutine 88 [runnable]:
+main.multiLogging(0xc208038080, 0x74)
+	/home/brant/workfile/testfile/go_test/log/log.go:45
+created by main.main
+	/home/brant/workfile/testfile/go_test/log/log.go:38 +0x4a0
+
+goroutine 89 [runnable]:
+main.multiLogging(0xc208038080, 0x74)
+	/home/brant/workfile/testfile/go_test/log/log.go:45
+created by main.main
+	/home/brant/workfile/testfile/go_test/log/log.go:38 +0x4a0
+
+goroutine 90 [runnable]:
+main.multiLogging(0xc208038080, 0x74)
+	/home/brant/workfile/testfile/go_test/log/log.go:45
+created by main.main
+	/home/brant/workfile/testfile/go_test/log/log.go:38 +0x4a0
+
+goroutine 91 [runnable]:
+main.multiLogging(0xc208038080, 0x74)
+	/home/brant/workfile/testfile/go_test/log/log.go:45
+created by main.main
+	/home/brant/workfile/testfile/go_test/log/log.go:38 +0x4a0
+
+goroutine 92 [runnable]:
+main.multiLogging(0xc208038080, 0x74)
+	/home/brant/workfile/testfile/go_test/log/log.go:45
+created by main.main
+	/home/brant/workfile/testfile/go_test/log/log.go:38 +0x4a0
+
+goroutine 93 [runnable]:
+main.multiLogging(0xc208038080, 0x74)
+	/home/brant/workfile/testfile/go_test/log/log.go:45
+created by main.main
+	/home/brant/workfile/testfile/go_test/log/log.go:38 +0x4a0
+
+goroutine 94 [runnable]:
+main.multiLogging(0xc208038080, 0x74)
+	/home/brant/workfile/testfile/go_test/log/log.go:45
+created by main.main
+	/home/brant/workfile/testfile/go_test/log/log.go:38 +0x4a0
+
+goroutine 95 [runnable]:
+main.multiLogging(0xc208038080, 0x74)
+	/home/brant/workfile/testfile/go_test/log/log.go:45
+created by main.main
+	/home/brant/workfile/testfile/go_test/log/log.go:38 +0x4a0
+
+goroutine 96 [runnable]:
+main.multiLogging(0xc208038080, 0x74)
+	/home/brant/workfile/testfile/go_test/log/log.go:45
+created by main.main
+	/home/brant/workfile/testfile/go_test/log/log.go:38 +0x4a0
+
+goroutine 97 [runnable]:
+main.multiLogging(0xc208038080, 0x74)
+	/home/brant/workfile/testfile/go_test/log/log.go:45
+created by main.main
+	/home/brant/workfile/testfile/go_test/log/log.go:38 +0x4a0
+
+goroutine 98 [runnable]:
+main.multiLogging(0xc208038080, 0x74)
+	/home/brant/workfile/testfile/go_test/log/log.go:45
+created by main.main
+	/home/brant/workfile/testfile/go_test/log/log.go:38 +0x4a0
+
+goroutine 99 [runnable]:
+main.multiLogging(0xc208038080, 0x74)
+	/home/brant/workfile/testfile/go_test/log/log.go:45
+created by main.main
+	/home/brant/workfile/testfile/go_test/log/log.go:38 +0x4a0
+
+goroutine 100 [runnable]:
+main.multiLogging(0xc208038080, 0x74)
+	/home/brant/workfile/testfile/go_test/log/log.go:45
+created by main.main
+	/home/brant/workfile/testfile/go_test/log/log.go:38 +0x4a0
+
+goroutine 101 [runnable]:
+main.multiLogging(0xc208038080, 0x74)
+	/home/brant/workfile/testfile/go_test/log/log.go:45
+created by main.main
+	/home/brant/workfile/testfile/go_test/log/log.go:38 +0x4a0
+
+goroutine 102 [runnable]:
+main.multiLogging(0xc208038080, 0x74)
+	/home/brant/workfile/testfile/go_test/log/log.go:45
+created by main.main
+	/home/brant/workfile/testfile/go_test/log/log.go:38 +0x4a0
+
+goroutine 103 [runnable]:
+main.multiLogging(0xc208038080, 0x74)
+	/home/brant/workfile/testfile/go_test/log/log.go:45
+created by main.main
+	/home/brant/workfile/testfile/go_test/log/log.go:38 +0x4a0
+
+goroutine 104 [runnable]:
+main.multiLogging(0xc208038080, 0x74)
+	/home/brant/workfile/testfile/go_test/log/log.go:45
+created by main.main
+	/home/brant/workfile/testfile/go_test/log/log.go:38 +0x4a0
+panic: runtime error: invalid memory address or nil pointer dereference
+[signal 0xb code=0x1 addr=0x10 pc=0x45371f]
+
+goroutine 6 [running]:
+package/log.(*Logger).Debugln(0x0, 0xc2080187a0, 0x1, 0x1)
+	/home/brant/workfile/myjob/src/package/log/log.go:88 +0x1f
+main.multiLogging(0xc208038080, 0x74)
+	/home/brant/workfile/testfile/go_test/log/log.go:47 +0xf6
+created by main.main
+	/home/brant/workfile/testfile/go_test/log/log.go:38 +0x4a0
+panic: runtime error: invalid memory address or nil pointer dereference
+[signal 0xb code=0x1 addr=0x10 pc=0x45371f]
+
+goroutine 11 [running]:
+package/log.(*Logger).Debugln(0x0, 0xc20801bfa0, 0x1, 0x1)
+	/home/brant/workfile/myjob/src/package/log/log.go:88 +0x1f
+main.multiLogging(0xc208038080, 0x74)
+	/home/brant/workfile/testfile/go_test/log/log.go:47 +0xf6
+created by main.main
+	/home/brant/workfile/testfile/go_test/log/log.go:38 +0x4a0

@@ -7,6 +7,7 @@
 package main
 
 import (
+	"fmt"
 	"sync"
 	"time"
 )
@@ -28,18 +29,33 @@ type timer struct {
 	seq    uintptr
 }
 
-var timers struct {
+type timerst struct {
 	lock         sync.Mutex
 	created      bool
 	sleeping     bool
 	rescheduling bool
 	sleepUntil   int64
 	//waitnote     note
-	t []*timer
+	waitc chan int
+	t     []*timer
+}
+
+var timers *timerst
+
+func setup() {
+	timers = new(timerst)
+	timers.waitc = make(chan int)
+}
+
+func goready(n int) {
+	timers.waitc <- n
+}
+func gopark() {
+	<-timers.waitc
 }
 
 // nacl fake time support - time in nanoseconds since 1970
-var faketime int64
+//var faketime int64
 
 // Package time APIs.
 // Godoc uses the comments in package time, not these.
@@ -97,7 +113,8 @@ func addtimerLocked(t *timer) {
 	// when must never be negative; otherwise timerproc will overflow
 	// during its delta calculation and never expire other runtime timers.
 	if t.when < 0 {
-		t.when = 1<<63 - 1
+		return
+		//t.when = 1<<63 - 1
 	}
 	t.i = len(timers.t)
 	timers.t = append(timers.t, t)
@@ -110,7 +127,7 @@ func addtimerLocked(t *timer) {
 		}
 		if timers.rescheduling {
 			timers.rescheduling = false
-			//goready(timers.gp, 0)
+			goready(0)
 		}
 	}
 	if !timers.created {
@@ -195,10 +212,10 @@ func timerproc() {
 			f(arg, seq)
 			timers.lock.Lock()
 		}
-		if delta < 0 || faketime > 0 {
+		if delta < 0 {
 			// No timers left - put goroutine to sleep.
 			timers.rescheduling = true
-			//goparkunlock(&timers.lock, "timer goroutine (idle)", traceEvGoBlock, 1)
+			gopark()
 			continue
 		}
 		// At least one timer pending. Sleep until then.
@@ -206,6 +223,7 @@ func timerproc() {
 		timers.sleepUntil = now + delta
 		//noteclear(&timers.waitnote)
 		timers.lock.Unlock()
+		fmt.Printf("sleep:%d\n", delta)
 		notetsleepg(delta)
 	}
 }
@@ -271,10 +289,10 @@ func siftdownTimer(i int) {
 }
 
 func main() {
+	setup()
 	t := new(timer)
 	t.when = time.Now().UnixNano() + 1e9*2
 	addtimer(t)
-
 }
 
 // Entry points for net, time to call nanotime.

@@ -9,6 +9,7 @@ package main
 import (
 	"fmt"
 	"sync"
+	"sync/atomic"
 	"time"
 )
 
@@ -29,15 +30,19 @@ type timer struct {
 	seq    uintptr
 }
 
+func timerAction(a interface{}, b uintptr) {
+	fmt.Println(a, int64(b))
+}
+
 type timerst struct {
-	lock         sync.Mutex
+	lock         sync.RWMutex
 	created      bool
 	sleeping     bool
 	rescheduling bool
 	sleepUntil   int64
-	//waitnote     note
-	waitc chan int
-	t     []*timer
+	waitnote     note
+	waitc        chan int
+	t            []*timer
 }
 
 var timers *timerst
@@ -45,50 +50,22 @@ var timers *timerst
 func setup() {
 	timers = new(timerst)
 	timers.waitc = make(chan int)
+	timers.waitnote.slp = make(chan int64)
+	timers.waitnote.recv = make(chan int)
+	go timers.waitnote.notewait()
 }
 
 func goready(n int) {
+	fmt.Println("goready ----1")
 	timers.waitc <- n
+	fmt.Println("goready ----2")
 }
+
 func gopark() {
+	fmt.Println("gopark ----1")
 	<-timers.waitc
+	fmt.Println("gopark ----2")
 }
-
-// nacl fake time support - time in nanoseconds since 1970
-//var faketime int64
-
-// Package time APIs.
-// Godoc uses the comments in package time, not these.
-
-// time.now is implemented in assembly.
-
-// timeSleep puts the current goroutine to sleep for at least ns nanoseconds.
-//func timeSleep(ns int64) {
-//	if ns <= 0 {
-//		return
-//	}
-//
-//	t := getg().timer
-//	if t == nil {
-//		t = new(timer)
-//		getg().timer = t
-//	}
-//	*t = timer{}
-//	t.when = nanotime() + ns
-//	t.f = goroutineReady
-//	t.arg = getg()
-//	lock(&timers.lock)
-//	addtimerLocked(t)
-//	goparkunlock(&timers.lock, "sleep", traceEvGoSleep, 2)
-//}
-
-// startTimer adds t to the timer heap.
-//func startTimer(t *timer) {
-//	if raceenabled {
-//		racerelease(unsafe.Pointer(t))
-//	}
-//	addtimer(t)
-//}
 
 // stopTimer removes t from the timer heap if it is there.
 // It returns true if t was removed, false if t wasn't even there.
@@ -96,13 +73,11 @@ func stopTimer(t *timer) bool {
 	return deltimer(t)
 }
 
-// Go runtime.
-
-// Ready the goroutine arg.
-
 func addtimer(t *timer) {
 	timers.lock.Lock()
+	fmt.Println("add tmer start")
 	addtimerLocked(t)
+	fmt.Println("add tmer end")
 	timers.lock.Unlock()
 }
 
@@ -122,8 +97,8 @@ func addtimerLocked(t *timer) {
 	if t.i == 0 {
 		// siftup moved to top: new earliest deadline.
 		if timers.sleeping {
+			timers.waitnote.notewakeup()
 			timers.sleeping = false
-			//notewakeup(&timers.waitnote)
 		}
 		if timers.rescheduling {
 			timers.rescheduling = false
@@ -223,12 +198,49 @@ func timerproc() {
 		timers.sleepUntil = now + delta
 		//noteclear(&timers.waitnote)
 		timers.lock.Unlock()
-		fmt.Printf("sleep:%d\n", delta)
-		notetsleepg(delta)
+		timers.waitnote.notetsleepg(delta)
 	}
 }
-func notetsleepg(t int64) {
-	time.Sleep(time.Duration(t))
+
+type note struct {
+	key  uintptr
+	slp  chan int64
+	recv chan int
+}
+
+const note_free = uintptr(0)
+const note_sleep = uintptr(1)
+
+func (n *note) notewakeup() {
+	fmt.Printf("note wakeup1---\n")
+	n.recv <- 0
+	fmt.Printf("note wakeup2---\n")
+}
+
+func (n *note) notewait() {
+	var t int64
+	for {
+		t = <-n.slp
+		fmt.Printf("note wait:----%d\n", t)
+		time.Sleep(time.Duration(t))
+		if atomic.CompareAndSwapUintptr(&n.key, note_sleep, note_free) {
+			fmt.Printf("note timer will end sleeping\n")
+			n.recv <- 1
+		}
+		fmt.Printf("note wait end,next turn\n")
+	}
+}
+
+func (n *note) notetsleepg(t int64) {
+	n.slp <- t
+	atomic.StoreUintptr(&n.key, note_sleep)
+	fmt.Println("note sleep1----")
+	for {
+		<-n.recv
+		break
+	}
+	fmt.Println("note sleep end----")
+
 }
 
 // Heap maintenance algorithms.
@@ -290,16 +302,13 @@ func siftdownTimer(i int) {
 
 func main() {
 	setup()
-	t := new(timer)
-	t.when = time.Now().UnixNano() + 1e9*2
-	addtimer(t)
+	for i := 1; i < 100; i++ {
+		t := new(timer)
+		t.when = time.Now().UnixNano() + 1e9*2
+		t.f = timerAction
+		t.arg = "hello"
+		t.seq = uintptr(i)
+		addtimer(t)
+		time.Sleep(1e9 * 10)
+	}
 }
-
-// Entry points for net, time to call nanotime.
-
-// Monotonic times are reported as offsets from startNano.
-// We initialize startNano to nanotime() - 1 so that on systems where
-// monotonic time resolution is fairly low (e.g. Windows 2008
-// which appears to have a default resolution of 15ms),
-// we avoid ever reporting a nanotime of 0.
-// (Callers may want to use 0 as "time not set".)

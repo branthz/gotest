@@ -56,11 +56,15 @@ func setup() {
 }
 
 func goready(n int) {
+	fmt.Println("goready ----1")
 	timers.waitc <- n
+	fmt.Println("goready ----2")
 }
 
 func gopark() {
+	fmt.Println("gopark ----1")
 	<-timers.waitc
+	fmt.Println("gopark ----2")
 }
 
 // stopTimer removes t from the timer heap if it is there.
@@ -93,7 +97,7 @@ func addtimerLocked(t *timer) {
 	if t.i == 0 {
 		// siftup moved to top: new earliest deadline.
 		if timers.sleeping {
-			timers.waitnote.notewakeup()
+			//timers.waitnote.notewakeup()
 			timers.sleeping = false
 		}
 		if timers.rescheduling {
@@ -195,6 +199,7 @@ func timerproc() {
 		timers.sleepUntil = now + delta
 		//noteclear(&timers.waitnote)
 		timers.lock.Unlock()
+		time.Sleep(1e9)
 		timers.waitnote.notetsleepg(delta)
 	}
 }
@@ -208,21 +213,19 @@ type note struct {
 const note_free = uintptr(0)
 const note_sleep = uintptr(1)
 
-func (n *note) noteclear() {
-	n.key = note_free
-}
-
 func (n *note) notewakeup() {
+	fmt.Printf("note wakeup1---\n")
 	if atomic.CompareAndSwapUintptr(&n.key, note_sleep, note_free) {
 		n.recv <- 0
 	}
+	fmt.Printf("note wakeup2---\n")
 }
 
 func (n *note) notewait() {
 	var t int64
 	for {
 		t = <-n.slp
-		fmt.Printf("note wait:----%d\n", t/1000000)
+		fmt.Printf("note wait:----%d\n", t)
 		time.Sleep(time.Duration(t))
 		if atomic.CompareAndSwapUintptr(&n.key, note_sleep, note_free) {
 			fmt.Printf("note timer will end sleeping\n")
@@ -233,16 +236,15 @@ func (n *note) notewait() {
 }
 
 func (n *note) notetsleepg(t int64) {
-	if t < 1000 {
-		return
-	}
 	n.slp <- t
 	atomic.StoreUintptr(&n.key, note_sleep)
+	fmt.Println("note sleep1----")
 	for {
 		<-n.recv
-		n.key = note_free
 		break
 	}
+	fmt.Println("note sleep end----")
+
 }
 
 // Heap maintenance algorithms.
@@ -306,11 +308,11 @@ func main() {
 	setup()
 	for i := 1; i < 100; i++ {
 		t := new(timer)
-		t.when = time.Now().UnixNano() + 1e9*3
+		t.when = time.Now().UnixNano() + 1e9*2
 		t.f = timerAction
 		t.arg = "hello"
 		t.seq = uintptr(i)
 		addtimer(t)
-		time.Sleep(1e9 * 1)
+		time.Sleep(1e9 * 10)
 	}
 }

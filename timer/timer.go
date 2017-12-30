@@ -8,6 +8,7 @@ package main
 
 import (
 	"fmt"
+	"math/rand"
 	"sync"
 	"sync/atomic"
 	"time"
@@ -60,6 +61,7 @@ func goready(n int) {
 }
 
 func gopark() {
+	fmt.Println("==========go park")
 	<-timers.waitc
 }
 
@@ -71,9 +73,7 @@ func stopTimer(t *timer) bool {
 
 func addtimer(t *timer) {
 	timers.lock.Lock()
-	fmt.Println("add tmer start")
 	addtimerLocked(t)
-	fmt.Println("add tmer end")
 	timers.lock.Unlock()
 }
 
@@ -222,13 +222,13 @@ func (n *note) notewait() {
 	var t int64
 	for {
 		t = <-n.slp
-		fmt.Printf("note wait:----%d\n", t/1000000)
+		//fmt.Printf("note wait:----%d\n", t/1000000)
 		time.Sleep(time.Duration(t))
 		if atomic.CompareAndSwapUintptr(&n.key, note_sleep, note_free) {
-			fmt.Printf("note timer will end sleeping\n")
+			//fmt.Printf("note timer will end sleeping\n")
 			n.recv <- 1
 		}
-		fmt.Printf("note wait end,next turn\n")
+		//fmt.Printf("note wait end,next turn\n")
 	}
 }
 
@@ -302,15 +302,22 @@ func siftdownTimer(i int) {
 	}
 }
 
+var seed = rand.New(rand.NewSource(time.Now().Unix()))
+
+func getRand() int64 {
+	return seed.Int63n(200)
+}
+
 func main() {
 	setup()
-	for i := 1; i < 100; i++ {
+	for i := 1; i < 1000; i++ {
 		t := new(timer)
-		t.when = time.Now().UnixNano() + 1e9*3
+		t.when = time.Now().UnixNano() + 1e9*getRand()
 		t.f = timerAction
 		t.arg = "hello"
 		t.seq = uintptr(i)
 		addtimer(t)
-		time.Sleep(1e9 * 1)
 	}
+	stop := make(chan bool)
+	<-stop
 }

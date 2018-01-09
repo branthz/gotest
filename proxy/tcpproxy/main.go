@@ -5,12 +5,11 @@ import (
 	"fmt"
 	"net"
 	"os"
-
 	"github.com/google/tcpproxy"
 )
 
 func server() net.Listener {
-	ln, err := net.Listen("tcp", "127.0.0.1:8888")
+	ln, err := net.Listen("tcp", selfAddr)
 	if err != nil {
 		fmt.Println(err)
 		os.Exit(-1)
@@ -18,7 +17,8 @@ func server() net.Listener {
 	return ln
 }
 
-const testFrontAddr = "1.2.3.4:567"
+const selfAddr = "127.0.0.1:8000"
+const testFrontAddr = "1.2.3.9:567"
 
 func mlstenFunc(ln net.Listener) func(network, laddr string) (net.Listener, error) {
 	return func(network, laddr string) (net.Listener, error) {
@@ -34,8 +34,8 @@ func mlstenFunc(ln net.Listener) func(network, laddr string) (net.Listener, erro
 	}
 }
 
-var dst1 = "http://127.0.0.1:7779"
-var dst2 = "http://127.0.0.1:7778"
+var dst1 = "192.168.34.41:8888"
+var dst2 = "192.168.34.41:8889"
 
 func main() {
 	ln := server()
@@ -43,9 +43,8 @@ func main() {
 	p := &tcpproxy.Proxy{ListenFunc: mlstenFunc(ln)}
 	p.AddHTTPHostRoute(testFrontAddr, "foo.com", tcpproxy.To(dst1))
 	p.AddHTTPHostRoute(testFrontAddr, "bar.com", tcpproxy.To(dst2))
-	if err := p.Start(); err != nil {
+	if err := p.Run(); err != nil {
 		fmt.Println(err)
+		return
 	}
-	stop := make(chan int)
-	<-stop
 }

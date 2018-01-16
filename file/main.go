@@ -1,9 +1,12 @@
 package main
 
 import (
+	"bufio"
 	"fmt"
+	"io"
 	"os"
-	"path/filepath"
+
+	"github.com/branthz/utarrow/lib/file"
 )
 
 type dirpath struct {
@@ -25,13 +28,31 @@ func (d *dirpath) zipfile(path string, f os.FileInfo, err error) error {
 	}
 
 	defer file.Close()
+	return nil
 
 }
 
-func main() {
-	err := filepath.Walk()
+func main(){
+	readfileLine()
+}
+
+// test readline
+func readfileLine() {
+	f, err := os.Open("./abc")
 	if err != nil {
 		fmt.Println(err)
 		return
+	}
+	r:=bufio.NewReader(f)
+	for {
+		line, err := file.ReadLine(r)
+		if err != nil  {
+			if err==io.EOF{
+				break	
+			}
+			fmt.Println(err)
+			return
+		}
+		fmt.Printf("%s\n", string(line))
 	}
 }

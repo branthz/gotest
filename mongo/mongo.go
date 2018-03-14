@@ -1,57 +1,84 @@
 package main
 
 import (
+	"fmt"
+
 	"gopkg.in/mgo.v2"
 	"gopkg.in/mgo.v2/bson"
-    "fmt"
 )
 
-type Collection struct {
-	_id   string
-	Data  string
+type User struct {
+	Name    string
+	Age     int
+	Address string
 }
 
 type Filebody struct {
 	data string `bson:"data"`
 }
 
-func mgoSaveIn(id string, buf string) error {
+var (
+	Session    *mgo.Session
+	Collection *mgo.Collection
+	DB         *mgo.Database
+)
 
-	session, err := mgo.Dial("localhost")
+func end() {
+	Session.Close()
+}
+
+func init() {
+	var err error
+	Session, err = mgo.Dial("localhost")
 	if err != nil {
-		return err
+		panic("mongo connection failed")
 	}
-	defer session.Close()
 
-	session.SetMode(mgo.Monotonic, true)
+	Session.SetMode(mgo.Monotonic, true)
+	DB = Session.DB("zltest")
+	Collection = DB.C("users")
+	err = Collection.EnsureIndex(mgo.Index{Key: []string{"name"}, Unique: true})
+	if err != nil {
+		panic(err)
+	}
+}
 
-	c := session.DB("sensor").C("tasklist")
-    //str:=fmt.Sprintf("{\"_id\":\"%s\",\"data\":\"%s\"}",id,buf)
-    err = c.Update(bson.M{"_id":id},bson.M{"_id":id,"data":buf})
+func create(u *User) error {
+	return Collection.Insert(u)
+}
+
+func del(u *User) error {
+	return Collection.Remove(bson.M{"_name": u.Name})
+}
+
+func update(id string, buf string) error {
+	//str:=fmt.Sprintf("{\"_id\":\"%s\",\"data\":\"%s\"}",id,buf)
+	err := Collection.Update(bson.M{"_id": id}, bson.M{"_id": id, "data": buf})
 	if err != nil {
 		return err
 	}
 	return nil
 }
-/*
-func getData(md5 string) ([]byte, error) {
-	session, err := mgo.Dial("localhost")
-	if err != nil {
-		return nil, err
-	}
-	defer session.Close()
-	session.SetMode(mgo.Monotonic, true)
 
-	c := session.DB("sensor").C("tasklist")
-	result := Filebody{}
-	c.Find(bson.M{"md5": md5}).One(&result)
-	buf, err := packdata([]byte(result.data))
-	if err != nil {
-		return nil, err
+func getUser(u *User) error {
+	err := Collection.Find(bson.M{"name": u.Name}).One(&u)
+	return err
+}
+
+func main() {
+	var u = User{
+		Name:    "xiang",
+		Age:     10,
+		Address: "zhangzhou",
 	}
-	return buf, nil
-}*/
-func main(){
-    err:= mgoSaveIn("11","{\"word\":\"Behind ervery beautiful thing,there is some kind of pain\"}")
-    fmt.Println("err:",err)
+	err := create(&u)
+	/* also support map as input
+	uu := make(map[string]interface{})
+	uu["Name"] = "qian"
+	uu["Age"] = 20
+	uu["Address"] = "shanghai"
+	*/
+	fmt.Println("err:", err, u)
+
+	end()
 }

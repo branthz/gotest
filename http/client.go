@@ -7,12 +7,13 @@ import (
 	"encoding/base64"
 	"encoding/hex"
 	"fmt"
-	js "github.com/go-simplejson"
 	"io"
 	"io/ioutil"
 	"mime/multipart"
 	"net/http"
 	"os"
+
+	js "github.com/bitly/go-simplejson"
 	//"package/tools"
 	//"path/filepath"
 	"time"
@@ -153,17 +154,23 @@ func postJson() {
 	data := "{\"Type\":1,\"MsgID\":20,\"ShopId\":20,\"Data\":300}"
 	//data := "{\"main\":{\"user\":\"root\",\"password\":\"BroadlinkFL1201\",\"oip\":\"115.29.245.194\",\"iip\":\"10.165.32.59\"},\"backup\":{\"user\":\"roota\",\"password\":\"BroadlinkFL1201\",\"oip\":\"115.29.202.219\",\"iip\":\"10.161.214.215\"},\"vendor_id\":\"10001\"}"
 	body := bytes.NewBuffer([]byte(data))
+	//zw, err := gzip.NewReader(body)
+	//if err != nil {
+	//	fmt.Println("111", err)
+	//	return
+	//}
 	client := http.Client{}
-	urlstr := "http://127.0.0.1:8999/new_message"
+	urlstr := "http://127.0.0.1:9898/v1/step/data"
 	request, err := http.NewRequest("POST", urlstr, body)
 	if err != nil {
-		fmt.Printf("%v\n", err)
+		fmt.Printf("2222%v\n", err)
 		os.Exit(-1)
 	}
 	tm := fmt.Sprintf("%d", time.Now().Unix())
 	request.Header.Add("timestamp", tm)
 	sign := CalTokenEx("/dnakit/server/deploy" + tm)
 	request.Header.Add("sign", sign)
+	request.Header.Add("Content-Encoding", "application/gzip")
 
 	response, err := client.Do(request)
 	if err != nil {

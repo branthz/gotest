@@ -2,23 +2,18 @@ package main
 
 import (
 	"fmt"
-	"html/template"
 	"net/http"
 	//"net/url"
-	//"errors"
-	"package/tools"
 	//"sync"
 	"io/ioutil"
 	"os"
-	"time"
 )
 
-func main() {
+func browser() {
 	http.HandleFunc("/1", uploadHandler)
 	http.Handle("/", http.FileServer(http.Dir("/home/brant/temp")))
 	http.ListenAndServe(":9090", nil)
 }
-
 
 func uploadHandler(w http.ResponseWriter, r *http.Request) {
 	f, err := os.Open("/home/brant/Documents/kit接口.docx")
@@ -36,5 +31,3 @@ func uploadHandler(w http.ResponseWriter, r *http.Request) {
 	//fmt.Fprintf(w, string(body1))
 	return
 }
-
-

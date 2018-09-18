@@ -9,7 +9,8 @@ import (
 
 //参数不能合在一个变量里，需要分开
 func showRoute() {
-	cmd := exec.Command("/usr/sbin/ip", "route", "show", "table", "254")
+	cmd := exec.Command("/usr/sbin/ip", "route show table 254")
+	//cmd := exec.Command("/usr/sbin/ip", "route", "show", "table", "254")
 	var out bytes.Buffer
 	cmd.Stdout = &out
 	err := cmd.Run()

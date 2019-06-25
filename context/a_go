@@ -1,0 +1,45 @@
+package main
+
+import (
+	"context"
+	"fmt"
+	"time"
+)
+
+func main() {
+	ctx, cancel := context.WithTimeout(context.Background(), time.Second)
+	defer cancel()
+	err := parking(ctx)
+	if err != nil {
+		fmt.Printf("Error happend:%v\n", err)
+	}
+}
+
+type result struct {
+	err error
+	msg string
+}
+
+func parking(ctx context.Context) error {
+	var re = make(chan *result)
+	go driving(re)
+	select {
+	case <-ctx.Done():
+		return ctx.Err()
+	case x := <-re:
+		if x.err != nil {
+			return x.err
+		}
+		fmt.Printf("parkgin test:%s\n", x.msg)
+		return nil
+	}
+}
+
+func driving(re chan *result) {
+	//something hanppend
+	time.Sleep(2 * 1e9)
+	r := new(result)
+	r.msg = "ok"
+	re <- r
+	return
+}

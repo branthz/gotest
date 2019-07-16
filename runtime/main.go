@@ -40,33 +40,37 @@ func cmd() {
 	time.Sleep(1e9 * 10)
 	return
 }
-func main(){
+
+func main() {
 	//testCopy()
-	testRune()
+	//testRune()
+	//typeVerify()
+	//typeString()
+	typeSlice()
 }
 
-func testRune(){
-	var a="123abc"
-	if unicode.IsDigit(rune([]byte(a)[0])){
+func testRune() {
+	var a = "123abc"
+	if unicode.IsDigit(rune([]byte(a)[0])) {
 		fmt.Println("digit")
-	}else{
+	} else {
 		fmt.Println("not digit")
 	}
 }
 
-const copyCount = 100*1000
-func testCopy(){
+const copyCount = 100 * 1000
+
+func testCopy() {
 	var a [1024]byte
 	var b [1024]byte
-	for i:=0;i<1000;i++{
-		b[i]=byte(i)
+	for i := 0; i < 1000; i++ {
+		b[i] = byte(i)
 	}
-	ts:=time.Now().UnixNano()
-	for i:=0;i<copyCount;i++{
-		copy(a[:],b[:1000])
+	ts := time.Now().UnixNano()
+	for i := 0; i < copyCount; i++ {
+		copy(a[:], b[:1000])
 	}
-	tp:=time.Now().UnixNano()
-	diff:=(tp-ts)/1e6
-	fmt.Printf("time diff:%d\n",diff)
+	tp := time.Now().UnixNano()
+	diff := (tp - ts) / 1e6
+	fmt.Printf("time diff:%d\n", diff)
 }
-

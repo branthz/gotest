@@ -16,15 +16,14 @@ func main() {
 
 	//go zcall(new(resourceB), ctx)
 
-	ctx, cancel := context.WithCancel(context.Background())
+	s,cancel:=NewStudent()
 	defer cancel()
-	s:=NewStudent()
-	err := s.parking(ctx)
+	err := s.parking()
 	if err != nil {
 		fmt.Printf("Error happend:%v\n", err)
 	}
-
 }
+
 /*
 func zcall(x call, ctx context.Context) error {
 	var r = make(chan *result)

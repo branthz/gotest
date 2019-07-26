@@ -1,0 +1,13 @@
+Version = "0.1"
+Name = "logbase"
+Listen = ":9898"
+LogLevel = "debug"
+LogPath = "/var/log/logbase.log"
+#LogPath = ""
+BossHost = "192.168.30.89:8002"
+MongoHost = "127.0.0.1:27017"
+[ports]
+    [ports.80]
+    desc = "网页访问"
+    [ports.110]
+    desc = "邮箱"

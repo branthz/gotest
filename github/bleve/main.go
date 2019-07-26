@@ -42,7 +42,7 @@ func Pre() {
 
 func main() {
 	Pre()
-	AddMsg()
+	//AddMsg()
 	query := bleve.NewMatchQuery("golang")
 	search := bleve.NewSearchRequest(query)
 	searchResults, err := index.Search(search)

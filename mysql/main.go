@@ -78,5 +78,4 @@ func createtable() {
 		fmt.Errorf("%s", err.Error())
 		return
 	}
-
 }

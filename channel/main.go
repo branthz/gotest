@@ -16,7 +16,17 @@ type kvstore struct {
 	kvStore map[string]string // current committed key-value pairs
 }
 
-func main() {
+func main(){
+	ch :=make(chan int,10)
+	ch <- 1
+	ch <- 2
+	close(ch)
+	for v:= range ch{
+		fmt.Println(v)
+	}
+}
+
+func xxx() {
 	sc, ec := newchannel()
 	/*
 		go func() {

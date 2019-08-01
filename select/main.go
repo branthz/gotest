@@ -7,8 +7,8 @@ import (
 
 func main() {
 	go doselect()
-	time.Sleep(1e9 * 20)
-	fmt.Println("end-----")
+	c := make(chan int)
+	<-c
 }
 
 func doselect() {
@@ -25,7 +25,6 @@ func doselect() {
 		//default:
 		//	fmt.Println("execute default")
 	}
-
 }
 
 func recv() int {

@@ -1,54 +1,32 @@
 package main
 
 import (
-    "fmt"
-    "github.com/astaxie/beego/orm"
-    _ "github.com/go-sql-driver/mysql" // import your used driver
+	"encoding/json"
+	"fmt"
+	"net/http"
+
+	"github.com/astaxie/beego"
+	"github.com/open-falcon/falcon-plus/common/model"
 )
 
-// Model Struct
-type User struct {
-    Id   int
-    Name string `orm:"size(100)"`
-}
-
-type Product struct{
-    Id int
-    Pid string `orm:"size(32)"`
-    vender string `orm:"size(512)"`
-}
-
 func init() {
-    // set default database
-    orm.RegisterDataBase("default", "mysql", "root:123456@/zl?charset=utf8", 30)
-    
-    // register model
-    orm.RegisterModel(new(User),new(Product))
-    // create table
-    orm.RunSyncdb("default", false, true)
+	beego.Handler("/v1/push", http.HandlerFunc(func(w http.ResponseWriter, req *http.Request) {
+		if req.ContentLength == 0 {
+			http.Error(w, "body is blank", http.StatusBadRequest)
+			return
+		}
+		decoder := json.NewDecoder(req.Body)
+		var metrics []*model.MetricValue
+		err := decoder.Decode(&metrics)
+		if err != nil {
+			http.Error(w, "connot decode body", http.StatusBadRequest)
+			return
+		}
+		fmt.Println("-----", metrics)
+		//g.SendToTransfer(metrics)
+		w.Write([]byte("success"))
+	}))
 }
-
 func main() {
-    o := orm.NewOrm()
-
-    user := User{Name: "slene"}
-
-    // insert
-    id, err := o.Insert(&user)
-    fmt.Printf("ID: %d, ERR: %v\n", id, err)
-
-    // update
-    user.Name = "astaxie"
-    num, err := o.Update(&user)
-    fmt.Printf("NUM: %d, ERR: %v\n", num, err)
-
-    // read one
-    u := User{Id: user.Id}
-    err = o.Read(&u)
-    fmt.Printf("ERR: %v\n", err)
-
-    // delete
-    num, err = o.Delete(&u)
-    fmt.Printf("NUM: %d, ERR: %v\n", num, err)
+	beego.Run()
 }
-

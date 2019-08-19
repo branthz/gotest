@@ -47,7 +47,13 @@ func (m *mailer) send(subject, body string) error {
 }
 
 func main() {
-	MailSend("123456789")
+	m := newMailer()
+	tm := time.Now().Format("2006-01-02 03:04pm")
+	body := fmt.Sprintf("<html>\n<body>\n<h3>\n请部署license域名，lid:,如有不明，请联系小王.\n</h3>\n<h4>\"%s\"</h4>\n</body>\n</html>", tm)
+	err := m.send("module down alarm", body)
+	if err != nil {
+		fmt.Println(err)
+	}
 }
 
 func MailSend(lid string) {

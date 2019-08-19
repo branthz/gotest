@@ -12,6 +12,7 @@ import (
 	"sync"
 	"sync/atomic"
 	"time"
+	"net/http"
 )
 
 // Package time knows the layout of this structure.
@@ -53,7 +54,7 @@ func setup() {
 	timers.waitc = make(chan int)
 	timers.waitnote.slp = make(chan int64)
 	timers.waitnote.recv = make(chan int)
-	go timers.waitnote.notewait()
+	//go timers.waitnote.notewait()
 }
 
 func goready(n int) {
@@ -232,10 +233,35 @@ func (n *note) notewait() {
 	}
 }
 
+
+func (n *note)notetsleepg(t int64){
+	if t < 1000 {
+		return
+	}
+
+	atomic.StoreUintptr(&n.key, note_sleep)
+	select {
+	case <- n.recv:
+		break
+	case <- time.After(time.Duration(t)):
+		break
+	}
+}
+
+/*
 func (n *note) notetsleepg(t int64) {
 	if t < 1000 {
 		return
 	}
+
+	select {
+	case <- wakeupc:
+		break
+	case <- time.After(time.Duration(t)):
+		break
+	}
+
+
 	n.slp <- t
 	atomic.StoreUintptr(&n.key, note_sleep)
 	for {
@@ -243,7 +269,7 @@ func (n *note) notetsleepg(t int64) {
 		n.key = note_free
 		break
 	}
-}
+}*/
 
 // Heap maintenance algorithms.
 
@@ -312,12 +338,13 @@ func main() {
 	setup()
 	for i := 1; i < 1000; i++ {
 		t := new(timer)
-		t.when = time.Now().UnixNano() + 1e9*getRand()
+		t.when = time.Now().UnixNano() + 1e8*getRand()
 		t.f = timerAction
 		t.arg = "hello"
 		t.seq = uintptr(i)
 		addtimer(t)
 	}
-	stop := make(chan bool)
-	<-stop
+	//stop := make(chan bool)
+	//<-stop
+	http.ListenAndServe(":8777",nil)
 }

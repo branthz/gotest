@@ -27,6 +27,16 @@ func init() {
 		w.Write([]byte("success"))
 	}))
 }
+
+type MainController struct {
+	beego.Controller
+}
+
+func (this *MainController) Get() {
+	this.Ctx.WriteString("hello world")
+}
 func main() {
+	beego.Run()
+	beego.Router("/", &MainController{})
 	beego.Run()
 }

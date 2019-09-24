@@ -4,10 +4,11 @@ import (
 	"fmt"
 	//"gopkg.in/redis.v2"
 	"encoding/binary"
-	"github.com/garyburd/redigo/redis"
 	"os"
 	"time"
 	"unsafe"
+
+	"github.com/garyburd/redigo/redis"
 	//"reflect"
 )
 
@@ -40,7 +41,7 @@ func testConn() {
 	fmt.Println(ret)
 }
 
-const MAXNUM = 100
+const mAXNUM = 100
 
 func main() {
 	rClient, err := redis.DialTimeout("tcp4", "127.0.0.1:6379", 3*1e9, 3*1e9, 2*1e9)
@@ -50,12 +51,14 @@ func main() {
 	}
 
 	//redis.NewPool()
-	v, err := rClient.Do("get", "user")
+	v, err := rClient.Do("get", "hello1")
 	if err != nil {
 		fmt.Println(err)
 	} else {
 		fmt.Println("1111", v)
 	}
+	v, err = rClient.Do("setnx", "guangzhou", "23")
+	fmt.Println(v, err)
 	//getone(rClient)
 	//write(rClient)
 	//redyLock(rClient)
@@ -120,7 +123,7 @@ func write(conn redis.Conn) {
 	var mac [6]byte
 	var p = (*int32)(unsafe.Pointer(&mac[0]))
 	var se session
-	for i := 0; i < MAXNUM; i++ {
+	for i := 0; i < mAXNUM; i++ {
 		se.a = int32(i)
 		se.b = int32(i)
 		sliceSP.p = uintptr(unsafe.Pointer(&se))

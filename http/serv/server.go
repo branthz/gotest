@@ -4,6 +4,8 @@ import (
 	"fmt"
 	"html/template"
 	"net/http"
+	"time"
+
 	//"net/url"
 	//"errors"
 	//"package/tools"
@@ -22,12 +24,14 @@ func main() {
 	//http.Handle("/", http.FileServer(http.Dir("/home/brant/temp")))
 	http.HandleFunc("/download", downloadHandler)
 	http.HandleFunc("/upload", uploadHandler)
-	http.HandleFunc("/", tokenHandler)
+	//http.HandleFunc("/", tokenHandler)
 	http.HandleFunc("/health", healthChecker)
 	http.ListenAndServe(":10086", nil)
 }
 
 func healthChecker(w http.ResponseWriter, r *http.Request) {
+	<-r.Cancel
+	time.Sleep(3 * 1e9)
 	w.Write([]byte("hello world 2"))
 }
 

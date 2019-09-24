@@ -155,26 +155,31 @@ func gzipWrite(w io.Writer, data []byte) error {
 	gw, err := gzip.NewWriterLevel(w, gzip.BestSpeed)
 	defer gw.Close()
 	gw.Write(data)
+	gw.Flush()
 	return err
 }
 
 func postJson() {
-	var data = `{ "version": "v1.3.1", "timestamp_seconds": "09:38:54", "tunnel_connected": [ ], "tunnel_speed": [ { "module": "tunnel", "event": "rate", "tunnel_id": 14, "step_sn": "STEP01R1201807030000000000000001", "peer_step_sn": "STEP01L1201807030000000000000009", "last_send_bytes_raw": 31, "last_recv_bytes_raw": 15, "last_send_bytes": 31, "last_recv_bytes": 15, "ts_seconds": 1531359526, "last_tx_ok_counts": 1, "last_tx_busy_counts": 0, "last_max_cache_size": 0, "cache_counts": 0, "tx_rate_kbps": 0, "peer_tx_rate_kbps": 0, "buy_bw_mbps": 100, "cache_bytes": 0, "total_send_kbytes_raw": 1, "total_recv_kbytes_raw": 0, "total_send_kbytes": 1, "total_recv_kbytes": 0, "session_count": 0, "total_mem_used": 29535935 }, { "module": "tunnel", "event": "rate", "tunnel_id": 32, "step_sn": "STEP01R1201807030000000000000001", "peer_step_sn": "STEP01L1201807030000000000000005", "last_send_bytes_raw": 327, "last_recv_bytes_raw": 2381, "last_send_bytes": 327, "last_recv_bytes": 2381, "ts_seconds": 1531359526, "last_tx_ok_counts": 29, "last_tx_busy_counts": 0, "last_max_cache_size": 0, "cache_counts": 0, "tx_rate_kbps": 0, "peer_tx_rate_kbps": 0, "buy_bw_mbps": 100, "cache_bytes": 0, "total_send_kbytes_raw": 9, "total_recv_kbytes_raw": 71, "total_send_kbytes": 9, "total_recv_kbytes": 71, "session_count": 0, "total_mem_used": 29535935 } ], "tunnel_disconnect": [ ], "tunnel_reconnected": [ ], "session_info": [ ], "mpath_timer": [ { "module": "mpath", "event": "info", "tunnel_id": 16, "step_sn": "STEP01R1201807030000000000000001", "peer_step_sn": "STEP01L1201807030000000000000007", "start_seconds": 1531359524, "duration_seconds": 30, "work_path_id": 2, "path_conf": "->10.0.33.13:8819:3", "path": [ { "type": 1, "link_num": 7, "path_rtt": 0, "busy_num": 0, "rx_bytes": 0, "tx_bytes": 0 }, { "type": 1, "link_num": 7, "path_rtt": 8, "busy_num": 0, "rx_bytes": 0, "tx_bytes": 0 }, { "type": 0, "link_num": 7, "path_rtt": 5, "busy_num": 0, "rx_bytes": 0, "tx_bytes": 0 } ] }, { "module": "mpath", "event": "info", "tunnel_id": 14, "step_sn": "STEP01R1201807030000000000000001", "peer_step_sn": "STEP01L1201807030000000000000009", "start_seconds": 1531359524, "duration_seconds": 30, "work_path_id": 1, "path_conf": "->60.191.35.164:8819:1", "path": [ { "type": 1, "link_num": 7, "path_rtt": 0, "busy_num": 0, "rx_bytes": 0, "tx_bytes": 0 }, { "type": 1, "link_num": 7, "path_rtt": 7, "busy_num": 0, "rx_bytes": 15, "tx_bytes": 31 }, { "type": 0, "link_num": 7, "path_rtt": 0, "busy_num": 0, "rx_bytes": 0, "tx_bytes": 0 } ] }, { "module": "mpath", "event": "info", "tunnel_id": 32, "step_sn": "STEP01R1201807030000000000000001", "peer_step_sn": "STEP01L1201807030000000000000005", "start_seconds": 1531359525, "duration_seconds": 30, "work_path_id": 2, "path_conf": "->10.0.31.13:8819:3", "path": [ { "type": 1, "link_num": 7, "path_rtt": 0, "busy_num": 0, "rx_bytes": 0, "tx_bytes": 0 }, { "type": 1, "link_num": 7, "path_rtt": 9, "busy_num": 0, "rx_bytes": 0, "tx_bytes": 0 }, { "type": 0, "link_num": 7, "path_rtt": 3, "busy_num": 0, "rx_bytes": 2381, "tx_bytes": 327 } ] } ] }`
+	data, err := ioutil.ReadFile("./xxx")
+	if err != nil {
+		return
+	}
 	var buf bytes.Buffer
-	err := gzipWrite(&buf, []byte(data))
+	err = gzipWrite(&buf, data)
 	if err != nil {
 		fmt.Println(err)
 		return
 	}
 	body := bytes.NewReader(buf.Bytes())
 	client := http.Client{}
-	urlstr := "http://127.0.0.1:9898/v1/step/data"
+	urlstr := "http://47.100.36.88:9898/v1/step/data"
 	request, err := http.NewRequest("POST", urlstr, body)
 	if err != nil {
 		fmt.Printf("2222%v\n", err)
 		os.Exit(-1)
 	}
 	tm := fmt.Sprintf("%d", time.Now().Unix())
+	fmt.Printf("raw length:%d,%s\n", len(data), tm)
 	request.Header.Add("timestamp", tm)
 	sign := CalTokenEx("/dnakit/server/deploy" + tm)
 	request.Header.Add("sign", sign)
@@ -193,7 +198,7 @@ func postJson() {
 		}
 		fmt.Printf("%s\n", string(contents))
 	}
-
+	fmt.Println(time.Now().Unix())
 }
 
 func postRegist() {

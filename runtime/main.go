@@ -46,7 +46,9 @@ func main() {
 	//testRune()
 	//typeVerify()
 	//typeString()
-	typeSlice()
+	//typeSlice()
+	//typeMap()
+	typeChan()
 }
 
 func testRune() {

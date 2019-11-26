@@ -65,6 +65,8 @@ func main() {
 	flag.Parse()
 	if tp == "udp" {
 		udpServ()
+	} else if tp == "client" {
+		send()
 	} else {
 		tcpserv()
 	}

@@ -46,6 +46,7 @@ func tcpserv() {
 		fmt.Println("listen:", err)
 		return
 	}
+	fmt.Printf("tcp listen:%s", ln.Addr())
 	for {
 		conn, err := ln.AcceptTCP()
 		if err != nil {

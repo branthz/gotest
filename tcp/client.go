@@ -6,7 +6,7 @@ import (
 )
 
 func send() {
-	raddr, err := net.ResolveTCPAddr("tcp4", "192.168.29.100:9800")
+	raddr, err := net.ResolveTCPAddr("tcp4", "127.0.0.1:9800")
 	if err != nil {
 		fmt.Println(err)
 		return
@@ -20,6 +20,7 @@ func send() {
 	for {
 		_, err = tp.Read(buf)
 		if err != nil {
+			fmt.Printf("++++%v", err)
 			break
 		}
 	}
